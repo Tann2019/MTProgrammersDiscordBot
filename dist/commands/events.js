@@ -31,11 +31,14 @@ export default commandModule({
           const linkElement = element.querySelector('a[href*="/events/"]');
 
           const title = titleElement ? titleElement.textContent.trim() : "";
-          const date = dateElement ? new Date(dateElement.getAttribute("datetime")) : null;
+          const dateText = dateElement ? dateElement.textContent.trim() : "";
+          
           const link = linkElement ? linkElement.href : "";
 
-          if (title && date && link) {
-            events.push({ title, date, link });
+          console.log(`Event found: title=${title}, dateText=${dateText}, link=${link}`);
+
+          if (title && dateText && link) {
+            events.push({ title, dateText, link });
           }
         });
 
@@ -48,11 +51,12 @@ export default commandModule({
       if (events.length === 0) {
         await ctx.interaction.editReply("No upcoming events.");
       } else {
-        // Sort events by date and get the closest one
-        events.sort((a, b) => a.date - b.date);
+        // Get the closest event (assuming the first one is the closest)
         const closestEvent = events[0];
 
-        const message = `**${closestEvent.title}**\nDate: ${closestEvent.date.toLocaleString()}\nLink: ${closestEvent.link}\n\n`;
+        console.log("Closest event:", closestEvent);
+
+        const message = `**${closestEvent.title}**\nDate: ${closestEvent.dateText}\nLink: ${closestEvent.link}\n\n`;
         await ctx.interaction.editReply(message);
       }
     } catch (error) {

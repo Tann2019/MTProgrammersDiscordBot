@@ -3,7 +3,7 @@
         {
             "id": "1281036117944172609",
             "application_id": "1281032367762309150",
-            "version": "1305069755975077939",
+            "version": "1305073958462427139",
             "default_member_permissions": null,
             "type": 1,
             "name": "ping",
@@ -18,9 +18,9 @@
             "nsfw": false
         },
         {
-            "id": "1305069755975077938",
+            "id": "1305073958462427138",
             "application_id": "1281032367762309150",
-            "version": "1305069755975077940",
+            "version": "1305073958462427140",
             "default_member_permissions": null,
             "type": 1,
             "name": "events",
