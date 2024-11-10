@@ -1,0 +1,39 @@
+{
+    "global": [
+        {
+            "id": "1281036117944172609",
+            "application_id": "1281032367762309150",
+            "version": "1305069755975077939",
+            "default_member_permissions": null,
+            "type": 1,
+            "name": "ping",
+            "name_localizations": null,
+            "description": "A ping command",
+            "description_localizations": null,
+            "dm_permission": true,
+            "contexts": null,
+            "integration_types": [
+                0
+            ],
+            "nsfw": false
+        },
+        {
+            "id": "1305069755975077938",
+            "application_id": "1281032367762309150",
+            "version": "1305069755975077940",
+            "default_member_permissions": null,
+            "type": 1,
+            "name": "events",
+            "name_localizations": null,
+            "description": "Displays the closest upcoming Meetup event",
+            "description_localizations": null,
+            "dm_permission": true,
+            "contexts": null,
+            "integration_types": [
+                0,
+                1
+            ],
+            "nsfw": false
+        }
+    ]
+}

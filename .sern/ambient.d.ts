@@ -1,0 +1,92 @@
+declare var __DEV__: boolean
+declare var __PROD__: boolean
+declare var __VERSION__: string
+declare namespace NodeJS {
+    interface ProcessEnv {
+        ALLUSERSPROFILE:string
+        AMDRMPATH:string
+        APPDATA:string
+        CHROME_CRASHPAD_PIPE_NAME:string
+        COLOR:string
+        COLORTERM:string
+        CommonProgramFiles:string
+        "CommonProgramFiles(x86)": string
+        CommonProgramW6432:string
+        COMPUTERNAME:string
+        ComSpec:string
+        DISCORD_TOKEN:string
+        DriverData:string
+        EDITOR:string
+        EFC_13092:string
+        FPS_BROWSER_APP_PROFILE_STRING:string
+        FPS_BROWSER_USER_PROFILE_STRING:string
+        GIT_ASKPASS:string
+        HOME:string
+        HOMEDRIVE:string
+        HOMEPATH:string
+        INIT_CWD:string
+        "IntelliJ IDEA Community Edition": string
+        LANG:string
+        LOCALAPPDATA:string
+        LOGONSERVER:string
+        NODE:string
+        NODE_ENV:string
+        NODE_EXE:string
+        NPM_CLI_JS:string
+        npm_command:string
+        npm_config_cache:string
+        npm_config_globalconfig:string
+        npm_config_global_prefix:string
+        npm_config_init_module:string
+        npm_config_local_prefix:string
+        npm_config_metrics_registry:string
+        npm_config_node_gyp:string
+        npm_config_noproxy:string
+        npm_config_prefix:string
+        npm_config_userconfig:string
+        npm_config_user_agent:string
+        npm_execpath:string
+        npm_lifecycle_event:string
+        npm_lifecycle_script:string
+        npm_node_execpath:string
+        npm_package_json:string
+        npm_package_name:string
+        npm_package_version:string
+        NPM_PREFIX_NPM_CLI_JS:string
+        NUMBER_OF_PROCESSORS:string
+        OneDrive:string
+        OneDriveConsumer:string
+        ORIGINAL_XDG_CURRENT_DESKTOP:string
+        OS:string
+        Path:string
+        PATHEXT:string
+        PROCESSOR_ARCHITECTURE:string
+        PROCESSOR_IDENTIFIER:string
+        PROCESSOR_LEVEL:string
+        PROCESSOR_REVISION:string
+        ProgramData:string
+        ProgramFiles:string
+        "ProgramFiles(x86)": string
+        ProgramW6432:string
+        PROMPT:string
+        PSModulePath:string
+        PUBLIC:string
+        SESSIONNAME:string
+        SystemDrive:string
+        SystemRoot:string
+        TEMP:string
+        TERM_PROGRAM:string
+        TERM_PROGRAM_VERSION:string
+        TMP:string
+        USERDOMAIN:string
+        USERDOMAIN_ROAMINGPROFILE:string
+        USERNAME:string
+        USERPROFILE:string
+        VSCODE_GIT_ASKPASS_EXTRA_ARGS:string
+        VSCODE_GIT_ASKPASS_MAIN:string
+        VSCODE_GIT_ASKPASS_NODE:string
+        VSCODE_GIT_IPC_HANDLE:string
+        VSCODE_INJECTION:string
+        windir:string
+    }
+}
