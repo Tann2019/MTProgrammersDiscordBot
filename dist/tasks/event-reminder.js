@@ -3,8 +3,10 @@ import { scheduledTask } from '@sern/handler';
 import { client } from '../index.js'; // Adjust the path to your main bot file
 import puppeteer from 'puppeteer';
 
+const announcedEvents = new Set();
+
 export default scheduledTask({
-  trigger: '* * * * *',
+  trigger: '*/30 * * * *', // Run every minute
   execute: async () => {
     try {
       if (!client.isReady()) {
@@ -14,8 +16,8 @@ export default scheduledTask({
 
       const MEETUP_URL = 'https://www.meetup.com/montana-programmers/events/';
       const CHANNELS = {
-        Billings: '1306488244619313192',
-        Bozeman: '1103136069928620085',
+        Billings: 'YOUR_BILLINGS_CHANNEL_ID',
+        Bozeman: 'YOUR_BOZEMAN_CHANNEL_ID',
         // Add more locations and their corresponding channel IDs here
       };
 
@@ -57,21 +59,32 @@ export default scheduledTask({
 
       const now = new Date();
 
-      // Filter events happening within the next 24 hours
+      // Time boundaries for the 10-minute window 24 hours before the event
+      const twentyFourHoursInMs = 24 * 60 * 60 * 1000;
+      const tenMinutesInMs = 10 * 60 * 1000;
+      const lowerBound = twentyFourHoursInMs - tenMinutesInMs;
+      const upperBound = twentyFourHoursInMs;
+
+      // Filter events happening in the 10-minute window 24 hours from now
       const upcomingEvents = events.filter((event) => {
         const eventDate = new Date(event.dateText);
         const timeDifference = eventDate - now;
-        // return timeDifference > 0 && timeDifference <= 24 * 60 * 60 * 1000;
-        return timeDifference > 0;
+        return timeDifference >= lowerBound && timeDifference <= upperBound;
+        //return timeDifference > 0;  --Debugging
       });
 
       if (upcomingEvents.length === 0) {
-        console.log('No events happening within the next 24 hours.');
+        console.log('No events happening within the next 24 hours window.');
         return;
       }
 
-      // For each upcoming event, post in the appropriate channel
+      // For each upcoming event, post in the appropriate channel if not already posted
       for (const event of upcomingEvents) {
+        if (announcedEvents.has(event.link)) {
+          // Event has already been announced
+          continue;
+        }
+
         let location = null;
         if (event.title.includes('Billings')) {
           location = 'Billings';
@@ -88,6 +101,8 @@ export default scheduledTask({
             const message = `**${event.title}**\nDate: ${event.dateText}\nLink: ${event.link}`;
             await channel.send(message);
             console.log(`Posted event to ${location} channel: ${event.title}`);
+            // Add the event to the announcedEvents set
+            announcedEvents.add(event.link);
           } else {
             console.warn(`Channel not found or not text-based for location: ${location}`);
           }
